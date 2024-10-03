@@ -32,4 +32,9 @@ st.markdown("""
 6. Wordcloud [(https://pypi.org/project/wordcloud/)](https://pypi.org/project/wordcloud/)
 7. mpl_toolkits [(https://matplotlib.org/stable/api/toolkits/mplot3d.html)](https://matplotlib.org/stable/api/toolkits/mplot3d.html)
 
+""") 
+
+st.header("Describing the Dataset")
+st.markdown("""    
+...
 """)
