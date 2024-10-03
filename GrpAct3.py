@@ -48,3 +48,19 @@ laptopData.info(buf=buffer)
 laptopData_info_as_string = buffer.getvalue()
 
 st.text(laptopData_info_as_string)
+
+st.write(laptopData.isna().sum())
+
+st.write(laptopData.describe())
+
+st.write(laptopData['Inches'].value_counts())
+
+st.write(laptopData['CPU_Frequency (GHz)'].value_counts())
+
+st.write(laptopData['RAM (GB)'].value_counts())
+
+st.write(laptopData['Weight (kg)'].value_counts())
+
+st.write(laptopData['Price (Euro)'].value_counts())
+
+st.write(laptopData['Company'].value_counts())
