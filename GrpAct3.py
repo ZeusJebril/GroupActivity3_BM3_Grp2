@@ -6,6 +6,8 @@ import seaborn as sns
 import altair as alt
 from wordcloud import WordCloud
 from mpl_toolkits.mplot3d import Axes3D
+import plotly.graph_objects as go
+from io import StringIO
 
 st.title('Group Activity 2')
 
@@ -35,6 +37,14 @@ st.markdown("""
 """) 
 
 st.header("Describing the Dataset")
-st.markdown("""    
-...
-""")
+
+st.write("Read our CSV dataset.")
+laptopData = pd.read_csv("C:\\Users\\Julianna Boado\\Desktop\\GroupActivity3\\dataset\\laptop_price - dataset.csv")
+
+laptopData
+
+buffer = StringIO()
+laptopData.info(buf=buffer)
+laptopData_info_as_string = buffer.getvalue()
+
+st.text(laptopData_info_as_string)
