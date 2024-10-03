@@ -64,3 +64,23 @@ st.write(laptopData['Weight (kg)'].value_counts())
 st.write(laptopData['Price (Euro)'].value_counts())
 
 st.write(laptopData['Company'].value_counts())
+
+st.write(laptopData['Product'].value_counts())
+
+st.write(laptopData['TypeName'].value_counts())
+
+st.write(laptopData['ScreenResolution'].value_counts())
+
+st.write(laptopData['CPU_Company'].value_counts())
+
+st.write(laptopData['CPU_Type'].value_counts())
+
+st.write(laptopData['Memory'].value_counts())
+
+st.write(laptopData['GPU_Company'].value_counts())
+
+st.write(laptopData['GPU_Type'].value_counts())
+
+st.write(laptopData['OpSys'].value_counts())
+
+st.header("Graphs")
