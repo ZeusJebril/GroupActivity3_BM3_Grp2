@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import altair as alt
-from wordcloud import WordCloud
+# from wordcloud import WordCloud
 from mpl_toolkits.mplot3d import Axes3D
 import plotly.graph_objects as go
 from io import StringIO
@@ -39,7 +39,7 @@ st.markdown("""
 st.header("Describing the Dataset")
 
 st.write("Read our CSV dataset.")
-laptopData = pd.read_csv("C:\\Users\\Julianna Boado\\Desktop\\GroupActivity3\\dataset\\laptop_price - dataset.csv")
+laptopData = pd.read_csv("dataset/laptop_price - dataset.csv")
 
 laptopData
 
@@ -167,19 +167,50 @@ st.markdown('`Findings and Observations`')
 st.markdown("...")
 # put the findings and observations here
 
-st.subheader("Graph 9")
-#u can edit the graph name part
+#Graph 9
+st.subheader("Graph 9 Average Price by CPU and GPU company")
+pivot_table = laptopData.pivot_table(values='Price (Euro)', index='CPU_Company', columns='GPU_Company', aggfunc=np.mean)
+
+plt.figure(figsize=(12, 8))
+sns.heatmap(pivot_table, annot=True, fmt=".2f", cmap='YlGnBu', linewidths=.5)
+
+plt.title('Average Price by CPU and GPU Company')
+plt.xlabel('GPU Company')
+plt.ylabel('CPU Company')
+
+plt.tight_layout()
+st.pyplot(plt)
 
 st.markdown('`Findings and Observations`')
-st.markdown("...")
-# put the findings and observations here
+st.markdown("The analysis of the bar plot above depicting average prices by memory type reveals significant insights into the factors influencing laptop pricing. The bar plot demonstrates that laptops equipped with Solid State Drives (SSDs) command the highest average prices, reflecting the premium placed on their superior performance and faster data access speeds compared to traditional Hard Disk Drives (HDDs). Conversely, HDD-equipped laptops tend to have moderate pricing, which can be attributed to their larger storage capacity at lower production costs, appealing primarily to budget-conscious consumers. The category labeled Other encompasses less common memory configurations, which correlates with the lowest average prices, suggesting these options are either less popular or targeted at lower-end market segments.")
 
-st.subheader("Graph 10")
-#u can edit the graph name part
+#Graph 10
+st.subheader("Graph 10 Average Price by Memory Type")
+def extract_memory_type(memory):
+    if 'SSD' in memory:
+        return 'SSD'
+    elif 'HDD' in memory:
+        return 'HDD'
+    else:
+        return 'Other'
+
+laptopData['Memory_Type'] = laptopData['Memory'].apply(extract_memory_type)
+
+average_price_by_memory = laptopData.groupby('Memory_Type')['Price (Euro)'].mean().reset_index()
+
+plt.figure(figsize=(10, 6))
+sns.barplot(x='Memory_Type', y='Price (Euro)', data=average_price_by_memory, palette='YlGnBu')
+
+plt.title('Average Price by Memory Type')
+plt.xlabel('Memory Type')
+plt.ylabel('Average Price (Euro)')
+plt.grid(True)
+
+plt.tight_layout()
+st.pyplot(plt)
 
 st.markdown('`Findings and Observations`')
-st.markdown("...")
-# put the findings and observations here
+st.markdown("In conjunction with the visualization above, the heatmap analysis reveals the significant impact of CPU and GPU combinations on pricing strategies within the laptop market. The highest average prices are associated with the pairing of Intel CPUs and Nvidia GPUs, indicative of their prevalence in high-performance laptops tailored for gaming and professional applications. In contrast, configurations utilizing AMD components often result in lower average prices, signifying their focus on the budget and mid-range sectors. This comparative analysis underscores the relationship between hardware components and laptop pricing, elucidating how memory type and processor/gpu combinations affect consumer choices and market segmentation. Collectively, these findings provide valuable insights for consumers aiming to make informed purchasing decisions and for manufacturers seeking to effectively target different market segments.")
 
 
 st.header("Conclusion")
