@@ -123,21 +123,39 @@ st.markdown('`Findings and Observations`')
 st.markdown("The bar graph shows that laptops with the Windows 10 operating system have the highest average price, followed by those with Windows 7, while laptops with Android have the lowest average price. A surprising discovery is that a laptop with no operating system does not have the lowest price among the laptops with an operating system. The price difference between Windows 10 and Windows 7 laptops is about 1,000 euros, while the gap between Windows 10 and Android laptops is roughly 5,000 euros. This suggests that laptops with any Windows operating system tend to be more expensive than those with Android or no operating system.")
 
 
-st.subheader("Graph 3")
-#u can edit the graph name part
+# Graph 3: Price vs. RAM
+st.subheader("Graph 3: Price vs. RAM")
 
-# put the graph here
+def scatterPlot_Price_RAM():
+    plt.figure(figsize=(10, 6))
+    sns.scatterplot(x=laptopData['RAM (GB)'], y=laptopData['Price (Euro)'], alpha=0.7)
+    plt.title('Price vs. RAM')
+    plt.xlabel('RAM (GB)')
+    plt.ylabel('Price (Euro)')
+    st.pyplot(plt)
+
+scatterPlot_Price_RAM()
 
 st.markdown('`Findings and Observations`')
-st.markdown("...")
-# put the findings and observations here
+st.markdown("The box plot shows how laptop prices vary with different RAM capacities. Laptops with higher RAM, like 16 GB and above, generally have higher prices compared to those with lower RAM, such as 4 GB or 8 GB, indicating that RAM significantly impacts the pricing of laptops.")
 
-st.subheader("Graph 4")
-#u can edit the graph name part
+# Graph 4: Price by TypeName
+st.subheader("Graph 4: Price by Laptop Type")
+
+def barChart_Price_Type():
+    plt.figure(figsize=(15, 10))
+    sns.barplot(x='TypeName', y='Price (Euro)', data=laptopData, palette='Set2')
+    plt.title('Average Price by Laptop Type')
+    plt.xlabel('Laptop Type')
+    plt.ylabel('Average Price (Euro)')
+    plt.xticks(rotation=45)
+    st.pyplot(plt)
+
+barChart_Price_Type()
 
 st.markdown('`Findings and Observations`')
-st.markdown("...")
-# put the findings and observations here
+st.markdown("From the plot, we can see that as the CPU frequency increases, the price of the laptops tends to rise as well. This means that laptops with faster CPUs generally cost more. However, there are some exceptions, with certain brands offering lower prices even when their specifications are high. This indicates that not all expensive laptops are from well-known brands, and some budget-friendly options provide excellent performance.")
+
 
 st.subheader("Graph 5")
 #u can edit the graph name part
